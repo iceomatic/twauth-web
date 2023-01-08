@@ -39,7 +39,7 @@ def hello():
 def start():
     # note that the external callback URL must be added to the whitelist on
     # the developer.twitter.com portal, inside the app settings
-    app_callback_url = "https://twitter-auth.herokuapp.com/callback"
+    app_callback_url = url_for('callback', _external=True)
 
     # Generate the OAuth request tokens, then display them
     consumer = oauth.Consumer(

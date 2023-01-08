@@ -5,6 +5,7 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import json
+import tweepy
 
 app = Flask(__name__)
 
@@ -122,16 +123,16 @@ def callback():
 
     response = json.loads(real_content.decode('utf-8'))
 
-    friends_count = response['friends_count']
-    statuses_count = response['statuses_count']
-    followers_count = response['followers_count']
-    name = response['name']
+    friends_count = 10
+    statuses_count = 10
+    followers_count = 10
+    name = "myname"
 
     # don't keep this token and secret in memory any longer
     del oauth_store[oauth_token]
 
     return render_template('callback-success.html', screen_name=screen_name, user_id=user_id, name=name,
-                           friends_count=friends_count, statuses_count=statuses_count, followers_count=followers_count, access_token_url=access_token_url)
+                           oauth_token=real_oauth_token, oauth_token_secret=real_oauth_token_secret, followers_count=followers_count, access_token_url=access_token_url)
 
 
 @app.errorhandler(500)

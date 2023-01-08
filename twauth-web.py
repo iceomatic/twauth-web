@@ -25,7 +25,7 @@ app.config['APP_CONSUMER_SECRET'] = os.getenv(
 # config.cfg should look like:
 # APP_CONSUMER_KEY = 'API_Key_from_Twitter'
 # APP_CONSUMER_SECRET = 'API_Secret_from_Twitter'
-app.config.from_pyfile('config.cfg', silent=True)
+#app.config.from_pyfile('config.cfg', silent=True)
 
 oauth_store = {}
 
@@ -39,7 +39,7 @@ def hello():
 def start():
     # note that the external callback URL must be added to the whitelist on
     # the developer.twitter.com portal, inside the app settings
-    app_callback_url = url_for('callback', _external=True)
+    app_callback_url = "https://twitter-auth.herokuapp.com/callback"
 
     # Generate the OAuth request tokens, then display them
     consumer = oauth.Consumer(

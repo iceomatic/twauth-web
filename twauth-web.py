@@ -58,6 +58,8 @@ def start():
     oauth_token_secret = request_token[b'oauth_token_secret'].decode('utf-8')
 
     oauth_store[oauth_token] = oauth_token_secret
+    with open("oauth_store.json", "w") as file:
+        file.write(json.dumps(oauth_store))
     return render_template('start.html', authorize_url=authorize_url, oauth_token=oauth_token, request_token_url=request_token_url)
 
 
@@ -68,7 +70,8 @@ def callback():
     oauth_token = request.args.get('oauth_token')
     oauth_verifier = request.args.get('oauth_verifier')
     oauth_denied = request.args.get('denied')
-
+    with open("oauth_store.json", "r") as file:
+        oauth_store = json.loads(file.read())
     # if the OAuth request was denied, delete our local token
     # and show an error message
     if oauth_denied:

@@ -113,15 +113,15 @@ def callback():
     # Call api.twitter.com/1.1/users/show.json?user_id={user_id}
     real_token = oauth.Token(real_oauth_token, real_oauth_token_secret)
     real_client = oauth.Client(consumer, real_token)
-    real_resp, real_content = real_client.request(
-        show_user_url + '?user_id=' + user_id, "GET")
-
-    if real_resp['status'] != '200':
-        error_message = "Invalid response from Twitter API GET users/show: {status}".format(
-            status=real_content)
-        return render_template('error.html', error_message=error_message)
-
-    response = json.loads(real_content.decode('utf-8'))
+    # real_resp, real_content = real_client.request(
+    #     show_user_url + '?user_id=' + user_id, "GET")
+    #
+    # if real_resp['status'] != '200':
+    #     error_message = "Invalid response from Twitter API GET users/show: {status}".format(
+    #         status=real_content)
+    #     return render_template('error.html', error_message=error_message)
+    #
+    # response = json.loads(real_content.decode('utf-8'))
 
     friends_count = 10
     statuses_count = 10

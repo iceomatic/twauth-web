@@ -5,7 +5,6 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import json
-import tweepy
 
 app = Flask(__name__)
 
